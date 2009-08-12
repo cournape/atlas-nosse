@@ -333,6 +333,7 @@ int ProbeVecs(int verb, char *targarg, enum OSTYPE OS, enum ASMDIA asmb)
       i = 0;
    printf("\nVector ISA Extension configured as  %s (%d,%d)\n",
           ISAXNAM[i], i, iret);
+   return 0;
    return(iret);
 }
 
