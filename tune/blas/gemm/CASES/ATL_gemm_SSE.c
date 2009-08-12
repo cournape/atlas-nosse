@@ -1,5 +1,8 @@
 
 #include "camm_util.h"
+#ifndef ATL_SSE1
+   #error "This kernel requires SSE1!"
+#endif
 #ifndef ATL_GAS_x8632
    #error "This kernel requires gas x86-32 assembler!"
 #endif

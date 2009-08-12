@@ -1,5 +1,9 @@
 #include "atlas_asm.h"
 
+#ifndef ATL_SSE1
+	#error "This kernel requires SSE1."
+#endif
+
 #ifdef SREAL
 
 #ifdef ATL_GAS_x8632

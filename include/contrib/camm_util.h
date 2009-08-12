@@ -334,7 +334,13 @@ typedef struct {
 #endif
 
 #undef mxx
-#define mxx(a_)        str(%%xmm ## a_)
+#define mxx(a_) \
+{ \
+ str(%%xmm ## a_); \
+ #ifndef ATL_SSE1 \
+	  #error "YOYO" \
+  #endif \
+}
 #undef prp
 #define prp(a_,b_)     "rcpp" SSESUF mxx(a_) "," mxx(b_) "\n\t"
 #undef prps

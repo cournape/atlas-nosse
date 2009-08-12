@@ -33,6 +33,10 @@
  * then uses Camm Maguire's general routine for other cases of K-cleanup.
  */
 
+#ifndef ATL_SSE1
+	#error "This kernel requires SSE1"
+#endif
+
 /*****************************************************************************/
 /*                             ATL_mm_sse1_4K.c                              */
 /*****************************************************************************/
