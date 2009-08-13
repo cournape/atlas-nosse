@@ -37,6 +37,9 @@
  * to use a smaller block factor (for better application performance).
  * This kernel does not do well for complex.
  */
+#ifndef ATL_SSE2
+   #error "This kernel requires SSE2"
+#endif
 #ifndef ATL_GAS_x8664
    #error "This kernel requires x86-64 assembly!"
 #endif

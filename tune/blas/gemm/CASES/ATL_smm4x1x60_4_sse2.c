@@ -36,6 +36,9 @@
  *Purposely kept small so it is retained in cache, and easy to translate when
  *not
  */
+#ifndef ATL_SSE2
+   #error "This kernel requires SSE2"
+#endif
 
 #ifndef ATL_GAS_x8632
    #error "This kernel requires gas x86-32 assembler!"

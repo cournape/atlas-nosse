@@ -29,6 +29,9 @@
  */
 #include "atlas_asm.h"
 
+#ifndef ATL_SSE2
+   #error "This kernel requires SSE2"
+#endif
 
 #ifdef ATL_GAS_x8664
    #define movl movq

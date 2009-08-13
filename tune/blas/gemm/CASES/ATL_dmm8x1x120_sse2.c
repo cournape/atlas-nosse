@@ -29,6 +29,9 @@
  */
 #include "atlas_asm.h"
 
+#ifndef ATL_SSE2
+   #error "This kernel requires SSE2"
+#endif
 
 /*
  * This routine designed for Core2, which seems to have relatively few

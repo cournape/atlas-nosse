@@ -34,6 +34,9 @@
  * so we have to be very careful about alignment, and things seem to work
  * better if we keep a register block within 128 bytes
  */
+#ifndef ATL_SSE2
+   #error "This kernel requires SSE2"
+#endif
 #if !defined(MB)
    #define MB 0
 #endif
