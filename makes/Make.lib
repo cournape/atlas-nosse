@@ -1,12 +1,12 @@
 include Make.inc
 mySRCdir = $(SRCdir)/lib
 #
-# override with libatlas.so only when atlas is built to one lib
+# override with libatlas.so.3gf.0 only when atlas is built to one lib
 #
-DYNlibs = liblapack.so libf77blas.so libcblas.so libatlas.so 
-PTDYNlibs = liblapack.so libptf77blas.so libptcblas.so libatlas.so 
-CDYNlibs = liblapack.so libcblas.so libatlas.so 
-CPTDYNlibs = liblapack.so libptcblas.so libatlas.so 
+DYNlibs = liblapack.so.3gf.0 libf77blas.so.3gf.0 libcblas.so.3gf.0 libatlas.so.3gf.0 
+PTDYNlibs = liblapack.so.3gf.0 libptf77blas.so.3gf.0 libptcblas.so.3gf.0 libatlas.so.3gf.0 
+CDYNlibs = liblapack.so.3gf.0 libcblas.so.3gf.0 libatlas.so.3gf.0 
+CPTDYNlibs = liblapack.so.3gf.0 libptcblas.so.3gf.0 libatlas.so.3gf.0 
 
 VER=3.8.3
 tarnam = atlas$(VER)_$(ARCH)
@@ -32,58 +32,58 @@ $(tarnam).tgz :
 	mv $(tarnam).tar.gz $(tarnam).tgz
 
 ptshared :
-	- rm -f libatlas.so liblapack.so
-	$(MAKE) libatlas.so liblapack.so libptf77blas.so libf77blas.so \
-                libptcblas.so libcblas.so liblapack.so
+	- rm -f libatlas.so.3gf.0 liblapack.so.3gf.0
+	$(MAKE) libatlas.so.3gf.0 liblapack.so.3gf.0 libptf77blas.so.3gf.0 libf77blas.so.3gf.0 \
+                libptcblas.so.3gf.0 libcblas.so.3gf.0 liblapack.so.3gf.0
 shared :
-	- rm -f libatlas.so liblapack.so
-	$(MAKE) libatlas.so liblapack.so libf77blas.so libcblas.so liblapack.so
+	- rm -f libatlas.so.3gf.0 liblapack.so.3gf.0
+	$(MAKE) libatlas.so.3gf.0 liblapack.so.3gf.0 libf77blas.so.3gf.0 libcblas.so.3gf.0 liblapack.so.3gf.0
 cptshared :
-	- rm -f libatlas.so libclapack.so
-	$(MAKE) libatlas.so libclapack.so libptcblas.so libcblas.so
+	- rm -f libatlas.so.3gf.0 libclapack.so.3gf.0
+	$(MAKE) libatlas.so.3gf.0 libclapack.so.3gf.0 libptcblas.so.3gf.0 libcblas.so.3gf.0
 cshared :
-	- rm -f libatlas.so libclapack.so
-	$(MAKE) libatlas.so libclapack.so libcblas.so
+	- rm -f libatlas.so.3gf.0 libclapack.so.3gf.0
+	$(MAKE) libatlas.so.3gf.0 libclapack.so.3gf.0 libcblas.so.3gf.0
 
-libatlas.so : libatlas.a
-	ld $(LDFLAGS) -shared -soname libatlas.so -o libatlas.so \
+libatlas.so.3gf.0 : libatlas.a
+	ld $(LDFLAGS) -shared -soname libatlas.so.3gf.0 -o libatlas.so.3gf.0 \
         --whole-archive libatlas.a --no-whole-archive -lc $(LIBS)
-liblapack.so : liblapack.a
+liblapack.so.3gf.0 : liblapack.a
 	ld $(LDFLAGS) -shared -soname $@ -o $@ --whole-archive \
            liblapack.a --no-whole-archive $(F77SYSLIB)
-libclapack.so : libclapack.a
-	ld $(LDFLAGS) -shared -soname liblapack.so -o liblapack.so \
+libclapack.so.3gf.0 : libclapack.a
+	ld $(LDFLAGS) -shared -soname liblapack.so.3gf.0 -o liblapack.so.3gf.0 \
            --whole-archive libclapack.a
-libptf77blas.so : libptf77blas.a
+libptf77blas.so.3gf.0 : libptf77blas.a
 	ld $(LDFLAGS) -shared -soname $@ -o $@ --whole-archive libptf77blas.a \
            --no-whole-archive $(F77SYSLIB)
-libf77blas.so : libf77blas.a
+libf77blas.so.3gf.0 : libf77blas.a
 	ld $(LDFLAGS) -shared -soname $@ -o $@ --whole-archive libf77blas.a \
            --no-whole-archive $(F77SYSLIB)
-libptcblas.so : libptcblas.a
+libptcblas.so.3gf.0 : libptcblas.a
 	ld $(LDFLAGS) -shared -soname $@ -o $@ --whole-archive libptcblas.a
-libcblas.so : libcblas.a
+libcblas.so.3gf.0 : libcblas.a
 	ld $(LDFLAGS) -shared -soname $@ -o $@ --whole-archive libcblas.a
 #
 # Builds one shared lib from all ATLAS files
 #
 fat_ptshared :                              # threaded target
-	ld $(LDFLAGS) -shared -soname libatlas.so -o libatlas.so \
+	ld $(LDFLAGS) -shared -soname libatlas.so.3gf.0 -o libatlas.so.3gf.0 \
         --whole-archive liblapack.a libptf77blas.a libptcblas.a libatlas.a \
            --no-whole-archive -lc $(F77SYSLIB) $(LIBS)
 fat_shared :                                # unthreaded target
-	ld $(LDFLAGS) -shared -soname libatlas.so -o libatlas.so \
+	ld $(LDFLAGS) -shared -soname libatlas.so.3gf.0 -o libatlas.so.3gf.0 \
         --whole-archive liblapack.a libf77blas.a libcblas.a libatlas.a \
            --no-whole-archive -lc $(F77SYSLIB) $(LIBS)
 #
 # Builds shared lib, not include fortran codes from LAPACK
 #
 fat_cptshared : libclapack.a                # threaded target
-	ld $(LDFLAGS) -shared -soname libcatlas.so -o libcatlas.so \
+	ld $(LDFLAGS) -shared -soname libcatlas.so.3gf.0 -o libcatlas.so.3gf.0 \
         --whole-archive libclapack.a libptcblas.a libatlas.a \
         --no-whole-archive -lc $(LIBS)
 fat_cshared : libclapack.a                  # unthreaded target
-	ld $(LDFLAGS) -shared -soname libcatlas.so -o libcatlas.so \
+	ld $(LDFLAGS) -shared -soname libcatlas.so.3gf.0 -o libcatlas.so.3gf.0 \
         --whole-archive libclapack.a libcblas.a libatlas.a \
         --no-whole-archive -lc $(LIBS)
 
@@ -101,10 +101,10 @@ xtst : $(DYNlibs)
            -Wl,--rpath ./
 
 xtry_lp:
-	$(ICC) $(CDEFS) -o $@ $(mySRCdir)/qr.c libatlas.so -Wl,--rpath ./
+	$(ICC) $(CDEFS) -o $@ $(mySRCdir)/qr.c libatlas.so.3gf.0 -Wl,--rpath ./
 xtry :
-	$(ICC) $(CDEFS) -o $@ $(mySRCdir)/test_dynlink.c libatlas.so \
+	$(ICC) $(CDEFS) -o $@ $(mySRCdir)/test_dynlink.c libatlas.so.3gf.0 \
            -Wl,--rpath ./
 xtry_c :
-	$(ICC) $(CDEFS) -o $@ $(mySRCdir)/test_dynlink.c libcatlas.so \
+	$(ICC) $(CDEFS) -o $@ $(mySRCdir)/test_dynlink.c libcatlas.so.3gf.0 \
            -Wl,--rpath ./
