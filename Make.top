@@ -300,3 +300,12 @@ install_lib:
 	- cp $(LIBdir)/libptf77blas.a $(INSTdir)/.
 	- chmod 0644 $(INSTdir)/libptcblas.a $(INSTdir)/libptf77blas.a
 
+install_shared_lib:
+	for lib in atlas cblas f77blas lapack; do \
+		cp $(LIBdir)/lib$$lib.so.3gf.0 $(INSTdir)/. ; \
+		cd $(INSTdir) && rm -f lib$$lib.so.3gf && ln -s lib$$lib.so.3gf.0 lib$$lib.so.3gf; \
+		cd $(INSTdir) && rm -f lib$$lib.so && ln -s lib$$lib.so.3gf lib$$lib.so; \
+		cd $(INSTdir) && chmod 0644 lib$$lib.so.3gf.0 ;\
+		cd $(INSTdir) && chmod 0644 lib$$lib.so.3gf ;\
+		cd $(INSTdir) && chmod 0644 lib$$lib.so ;\
+	done
