@@ -50,20 +50,20 @@ libatlas.so.3gf.0 : libatlas.a
         --whole-archive libatlas.a --no-whole-archive -lc $(LIBS)
 liblapack.so.3gf.0 : liblapack.a
 	ld $(LDFLAGS) -shared -soname $@ -o $@ --whole-archive \
-           liblapack.a --no-whole-archive $(F77SYSLIB)
+           liblapack.a --no-whole-archive $(F77SYSLIB) -lc $(LIBS)
 libclapack.so.3gf.0 : libclapack.a
 	ld $(LDFLAGS) -shared -soname liblapack.so.3gf.0 -o liblapack.so.3gf.0 \
-           --whole-archive libclapack.a
+           --whole-archive libclapack.a --no-whole-archive -lc $(LIBS)
 libptf77blas.so.3gf.0 : libptf77blas.a
 	ld $(LDFLAGS) -shared -soname $@ -o $@ --whole-archive libptf77blas.a \
-           --no-whole-archive $(F77SYSLIB)
+           --no-whole-archive $(F77SYSLIB) -lc $(LIBS)
 libf77blas.so.3gf.0 : libf77blas.a
 	ld $(LDFLAGS) -shared -soname $@ -o $@ --whole-archive libf77blas.a \
-           --no-whole-archive $(F77SYSLIB)
+           --no-whole-archive $(F77SYSLIB) -lc $(LIBS)
 libptcblas.so.3gf.0 : libptcblas.a
-	ld $(LDFLAGS) -shared -soname $@ -o $@ --whole-archive libptcblas.a
+	ld $(LDFLAGS) -shared -soname $@ -o $@ --whole-archive libptcblas.a --no-whole-archive -lc $(LIBS)
 libcblas.so.3gf.0 : libcblas.a
-	ld $(LDFLAGS) -shared -soname $@ -o $@ --whole-archive libcblas.a
+	ld $(LDFLAGS) -shared -soname $@ -o $@ --whole-archive libcblas.a --no-whole-archive -lc $(LIBS)
 #
 # Builds one shared lib from all ATLAS files
 #
